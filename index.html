@@ -5,12 +5,12 @@ table, th, td {
 }
 </style>
 <center>
-  <h1><span style='color:red'> برنامج PS3  4.93 NOR/NAND Flash </span></h1>
+  <h1><span style='color:red'>برنامج PS3 4.93 NOR/NAND Flash</span></h1>
   <h2></h2>
-  <h2>مانكش فاهم هدف الصفحة، لستَ مسؤولاً عن جهازك.</h2>
+  <h2>ﻣﺎﻧﻜﺶ ﻓﺎﻫﻢ ﻫﺪﻑ ﺍﻟﺼﻔﺤﺔ، ﻟﺴﺖَ ﻣﺴﺆﻭﻻً ﻋﻦ ﺟﻬﺎﺯﻙ.</h2>
   <hr>
     <div id="dropdown">
-    <h3>حدد جهاز تفريغ ذاكرة الفلاش USB</h3>
+    <h3>ﺣﺪﺩ ﺟﻬﺎﺯ ﺗﻔﺮﻳﻎ ﺫﺍﻛﺮﺓ ﺍﻟﻔﻼﺵ USB</h3>
     <select id="usbList" onchange="updateDumpPath()">
     <option>/dev_usb000/</option>
     <option>/dev_usb001/</option>
@@ -90,88 +90,6 @@ table, th, td {
   <div id="exploit" style="display: none;"></div>
   <div id="trigger" style="display: none;"></div>
 
-<!-- سكريبت تصحيح وتشكيل النص العربي الآمن لـ PS3 -->
-<script>
-window.onload = function() {
-    var arabicMap = {
-        'ا': {ind: 'ﺍ', fin: 'ﺎ', beg: 'ﺍ', mid: 'ﺎ'},
-        'أ': {ind: 'ﺃ', fin: 'ﺄ', beg: 'ﺃ', mid: 'ﺄ'},
-        'إ': {ind: 'ﺇ', fin: 'ﺈ', beg: 'ﺇ', mid: 'ﺈ'},
-        'آ': {ind: 'ﺁ', fin: 'ﺂ', beg: 'ﺁ', mid: 'ﺂ'},
-        'ب': {ind: 'ﺏ', fin: 'ﺐ', beg: 'ﺑ', mid: 'ﺒ'},
-        'ت': {ind: 'ﺕ', fin: 'ﺖ', beg: 'ﺗ', mid: 'ﺘ'},
-        'ث': {ind: 'ﺙ', fin: 'ﺚ', beg: 'ﺛ', mid: 'ﺜ'},
-        'ج': {ind: 'ﺝ', fin: 'ﺞ', beg: 'ﺟ', mid: 'ﺠ'},
-        'ح': {ind: 'ﺡ', fin: 'ﺢ', beg: 'ﺣ', mid: 'ﺤ'},
-        'خ': {ind: 'ﺥ', fin: 'ﺦ', beg: 'ﺧ', mid: 'ﺨ'},
-        'د': {ind: 'ﺩ', fin: 'ﺪ', beg: 'ﺩ', mid: 'ﺪ'},
-        'ذ': {ind: 'ﺫ', fin: 'ﺬ', beg: 'ﺫ', mid: 'ﺬ'},
-        'ر': {ind: 'ﺭ', fin: 'ﺮ', beg: 'ﺭ', mid: 'ﺮ'},
-        'ز': {ind: 'ﺯ', fin: 'ﺰ', beg: 'ﺯ', mid: 'ﺰ'},
-        'س': {ind: 'ﺱ', fin: 'ﺲ', beg: 'ﺳ', mid: 'ﺴ'},
-        'ش': {ind: 'ﺵ', fin: 'ﺶ', beg: 'ﺷ', mid: 'ﺸ'},
-        'ص': {ind: 'ﺹ', fin: 'ﺺ', beg: 'ﺻ', mid: 'ﺼ'},
-        'ض': {ind: 'ﺽ', fin: 'ﺾ', beg: 'ﺿ', mid: 'ﻀ'},
-        'ط': {ind: 'ﻁ', fin: 'ﻂ', beg: 'ﻃ', mid: 'ﻄ'},
-        'ظ': {ind: 'ﻇ', fin: 'ﻆ', beg: 'ﻇ', mid: 'ﻈ'},
-        'ع': {ind: 'ﻉ', fin: 'ﻊ', beg: 'ﻋ', mid: 'ﻌ'},
-        'غ': {ind: 'ﻍ', fin: 'ﻎ', beg: 'ﻏ', mid: 'ﻐ'},
-        'ف': {ind: 'ﻑ', fin: 'ﻒ', beg: 'ﻓ', mid: 'ﻔ'},
-        'ق': {ind: 'ﻕ', fin: 'ﻖ', beg: 'ﻗ', mid: 'ﻘ'},
-        'ك': {ind: 'ﻙ', fin: 'ﻚ', beg: 'ﻛ', mid: 'ﻜ'},
-        'ل': {ind: 'ﻝ', fin: 'ﻞ', beg: 'ﻟ', mid: 'ﻠ'},
-        'م': {ind: 'ﻡ', fin: 'ﻢ', beg: 'ﻣ', mid: 'ﻤ'},
-        'ن': {ind: 'ﻥ', fin: 'ﻦ', beg: 'ﻧ', mid: 'ﻨ'},
-        'ه': {ind: 'ﻩ', fin: 'ﻪ', beg: 'ﻫ', mid: 'ﻬ'},
-        'و': {ind: 'ﻭ', fin: 'ﻮ', beg: 'ﻭ', mid: 'ﻮ'},
-        'ي': {ind: 'ﻱ', fin: 'ﻲ', beg: 'ﻳ', mid: 'ﻴ'},
-        'ى': {ind: 'ﻯ', fin: 'ﻰ', beg: 'ﻯ', mid: 'ﻰ'},
-        'ئ': {ind: 'ﺉ', fin: 'ﺊ', beg: 'ﺋ', mid: 'ﺌ'},
-        'ؤ': {ind: 'ﺅ', fin: 'ﺆ', beg: 'ﺅ', mid: 'ﺆ'},
-        'ة': {ind: 'ﺓ', fin: 'ﺔ', beg: 'ﺓ', mid: 'ﺔ'},
-        'لا': {ind: 'ﻻ', fin: 'ﻼ', beg: 'ﻻ', mid: 'ﻼ'}
-    };
-
-    var nonConnectingBefore = ['ا','أ','إ','آ','د','ذ','ر','ز','و','ؤ','ى','ة','لا'];
-
-    function fixText(str) {
-        var words = str.split(' ');
-        var newWords = [];
-        for (var w = 0; w < words.length; w++) {
-            var word = words[w];
-            var reshaped = '';
-            var chars = word.split('');
-            for (var i = 0; i < chars.length; i++) {
-                var c = chars[i];
-                if (!arabicMap[c]) { reshaped += c; continue; }
-                var prev = chars[i - 1];
-                var next = chars[i + 1];
-                var connectsPrev = prev && /[\u0600-\u06FF]/.test(prev) && nonConnectingBefore.indexOf(prev) === -1;
-                var connectsNext = next && /[\u0600-\u06FF]/.test(next);
-
-                if (connectsPrev && connectsNext) reshaped += arabicMap[c].mid;
-                else if (connectsPrev) reshaped += arabicMap[c].fin;
-                else if (connectsNext) reshaped += arabicMap[c].beg;
-                else reshaped += arabicMap[c].ind;
-            }
-            newWords.push(reshaped.split('').reverse().join(''));
-        }
-        return newWords.join(' ');
-    }
-
-    // تطبيق التعديل فقط على العناوين الظاهرة لتجنب توقف الصفحة
-    var tags = ['h1', 'h2', 'h3', 'span'];
-    for (var t = 0; t < tags.length; t++) {
-        var elems = document.getElementsByTagName(tags[t]);
-        for (var e = 0; e < elems.length; e++) {
-            if (elems[e].children.length === 0 && /[\u0600-\u06FF]/.test(elems[e].innerHTML)) {
-                elems[e].innerHTML = fixText(elems[e].innerHTML);
-            }
-        }
-    }
-};
-</script>
-
 <script>
 var ftype = "NOR",
     chk, vshchk, jump_1_addr_2, jump_2_addr_2, jump_2_2, jump_1_2, xtra_data, stack_frame, stack_frame2, stack_frame2_addr, jump_2, jump_1, xtra_data_addr, stack_frame_addr, jump_2_addr, jump_1_addr, stack_frame3, stack_frame3_addr, jump_1_addr_3, jump_2_addr_3, stack_frame4, stack_frame4_addr, jump_1_addr_4, jump_2_addr_4, offset_array = [],
@@ -196,8 +114,8 @@ var ftype = "NOR",
     dump_file = "PS3FlashDump493OFW.bin",
     fulldumppath = "/dev_usb000/PS3FlashDump493OFW.bin",
     base_file = "xxxx/dev_hdd0/theme/flash493.P3T",
-    fail_msg_frag = "<h3><span style='color:red'>فشل البحث في الذاكرة! أعد تشغيل المتصفح وحاول مرة أخرى.</h3></span>",
-    progress_msg_frag1 = "<h3>إيجاد إزاحات المتغيرات... ",
+    fail_msg_frag = "<h3><span style='color:red'>ﻓﺸﻞ ﺍﻟﺒﺤﺚ ﻓﻲ ﺍﻟﺬﺍﻛﺮﺓ! ﺃﻋﺪ ﺗﺸﻐﻴﻞ ﺍﻟﻤﺘﺼﻔﺢ ﻭﺣﺎﻭﻝ ﻣﺮﺓ ﺃﺧﺮﻯ.</h3></span>",
+    progress_msg_frag1 = "<h3>ﺇﻳﺠﺎﺩ ﺇﺯﺍﺣﺎﺕ ﺍﻟﻤﺘﻐﻴﺮﺍﺕ... ",
     progress_msg_frag2 = '%</h3>',
     toc_addr = 0x6F5558,
     gadget_mod1_addr = 0x60EFD8,
@@ -599,7 +517,7 @@ function initROP(init)
         +hexw2bin(gadget7_addr)
         +hexw2bin(toc_addr)
         +unescape("\u0000\u0000")
-        +"\/dev_flash\/vsh\/module\/vsh.self".convert()
+        +"/dev_flash/vsh/module/vsh.self".convert()
         +unescape("\u0000\u0000")
         // Flash Dumper Data
         +fulldumppath.convert()
