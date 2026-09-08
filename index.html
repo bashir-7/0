@@ -90,9 +90,9 @@ table, th, td {
   <div id="exploit" style="display: none;"></div>
   <div id="trigger" style="display: none;"></div>
 
-<!-- سكريبت تصحيح تشكيل وعرض النص العربي لمتصفح PS3 NetFront -->
+<!-- سكريبت تصحيح وتشكيل النص العربي الآمن لـ PS3 -->
 <script>
-(function() {
+window.onload = function() {
     var arabicMap = {
         'ا': {ind: 'ﺍ', fin: 'ﺎ', beg: 'ﺍ', mid: 'ﺎ'},
         'أ': {ind: 'ﺃ', fin: 'ﺄ', beg: 'ﺃ', mid: 'ﺄ'},
@@ -134,9 +134,7 @@ table, th, td {
 
     var nonConnectingBefore = ['ا','أ','إ','آ','د','ذ','ر','ز','و','ؤ','ى','ة','لا'];
 
-    function isArabic(ch) { return /[\u0600-\u06FF]/.test(ch); }
-
-    function reshapeArabicText(str) {
+    function fixText(str) {
         var words = str.split(' ');
         var newWords = [];
         for (var w = 0; w < words.length; w++) {
@@ -148,8 +146,8 @@ table, th, td {
                 if (!arabicMap[c]) { reshaped += c; continue; }
                 var prev = chars[i - 1];
                 var next = chars[i + 1];
-                var connectsPrev = prev && isArabic(prev) && nonConnectingBefore.indexOf(prev) === -1;
-                var connectsNext = next && isArabic(next);
+                var connectsPrev = prev && /[\u0600-\u06FF]/.test(prev) && nonConnectingBefore.indexOf(prev) === -1;
+                var connectsNext = next && /[\u0600-\u06FF]/.test(next);
 
                 if (connectsPrev && connectsNext) reshaped += arabicMap[c].mid;
                 else if (connectsPrev) reshaped += arabicMap[c].fin;
@@ -161,22 +159,17 @@ table, th, td {
         return newWords.join(' ');
     }
 
-    function processNodes(node) {
-        if (node.nodeType === 3) {
-            if (/[\u0600-\u06FF]/.test(node.nodeValue)) {
-                node.nodeValue = reshapeArabicText(node.nodeValue);
-            }
-        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
-            for (var i = 0; i < node.childNodes.length; i++) {
-                processNodes(node.childNodes[i]);
+    // تطبيق التعديل فقط على العناوين الظاهرة لتجنب توقف الصفحة
+    var tags = ['h1', 'h2', 'h3', 'span'];
+    for (var t = 0; t < tags.length; t++) {
+        var elems = document.getElementsByTagName(tags[t]);
+        for (var e = 0; e < elems.length; e++) {
+            if (elems[e].children.length === 0 && /[\u0600-\u06FF]/.test(elems[e].innerHTML)) {
+                elems[e].innerHTML = fixText(elems[e].innerHTML);
             }
         }
     }
-
-    window.addEventListener('load', function() {
-        processNodes(document.body);
-    });
-})();
+};
 </script>
 
 <script>
