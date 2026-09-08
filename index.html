@@ -799,7 +799,7 @@ function initROP(init)
 		if((j2===jump_2)&&(j1===jump_1)&&(x===xtra_data)&&(sf===stack_frame)&&(j2_2===jump_2_2)&&(j1_2===jump_1_2)&&(sf2===stack_frame2)&&(j2_3===jump_2_3)&&(j1_3===jump_1_3)&&(sf3===stack_frame3)&&(j2_4===jump_2_4)&&(j1_4===jump_1_4)&&(sf4===stack_frame4))
 		{
 			if(t_out!==0){clearTimeout(t_out);}
-			showResult("<h3><span style='color:green'>Successfully found all variable offsets!</span></h3>");
+			showResult("<h3><span style='color:green'>تم العثور بنجاح على جميع إزاحات المتغيرات!</span></h3>");
 			var elem = document.getElementById("nand");
 			elem.parentNode.removeChild(elem);
 			document.getElementById("init").value = "Run checks";
@@ -913,7 +913,7 @@ function listener()
 	{
 		document.removeEventListener('mousemove', myListener, false);
 		setTimeout(trigger,50,jump_1_addr);
-		showResult('<h3>Checking patch file...</h3>');
+		showResult('<h3>فحص ملف التصحيح...</h3>');
 		setTimeout(checkPatch,3000);
 	};
 	document.addEventListener('mousemove', myListener, false);
