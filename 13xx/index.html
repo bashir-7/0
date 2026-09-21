@@ -1,4 +1,4 @@
-<!-- Bashir / PS4 / 12.xx / 13.xx -->
+<!-- Bashir / PS4 / 13.xx -->
 <html manifest="cache.appcache">
 <head>
     <meta charset="utf-8">
@@ -152,7 +152,7 @@
     if (!ac || !document.documentElement.hasAttribute("manifest")) {
         go();
     } else if (!navigator.onLine) {
-        print("offline — running from cache", "ok");
+        print("غير متصل بالإنترنت - يعمل من ذاكرة التخزين المؤقت", "نعم");
         go();
     } else if (ac.status === ac.IDLE) {
         print("cached", "ok");
@@ -162,9 +162,9 @@
         print("update downloaded", "ok");
         waitForTap("التحديث جاهز — اضغط على الزر X لإعادة التحميل", function () { location.reload(); });
     } else {
-        print("checking cache...");
+        print("فحص ذاكرة التخزين المؤقت...");
         ac.addEventListener("downloading",
-            function () { print("caching for offline (first run)..."); }, false);
+            function () { print("التخزين المؤقت للتشغيل دون اتصال بالإنترنت (التشغيل الأول)..."); }, false);
         ac.addEventListener("progress", function (e) {
             if (e && e.total)
                 print("caching " + Math.round((e.loaded / e.total) * 100) + "%");
