@@ -1,0 +1,31 @@
+CACHE MANIFEST
+# rev 20260921-0443-cache-fix
+
+# Main pages
+index.html
+cache.html
+jb.html
+
+# Required exploit files
+jb.js
+mem.js
+int64.js
+ps4_offsets.js
+rpc_worker.js
+payload2.bin
+goldhen.bin
+
+# Firmware patches actually shipped in 13xx
+patches/1300.bin
+patches/1302.bin
+patches/1350.bin
+patches/1352.bin
+
+# Shared page background
+../background.jpg
+
+NETWORK:
+*
+
+FALLBACK:
+# Keep normal navigation available while preserving the existing cache flow.
